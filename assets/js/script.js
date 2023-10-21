@@ -4,7 +4,23 @@ const resultsModal = new bootstrap.Modal(document.getElementById("resultsModal")
 
 //add event listener so we can trigger the modal to load when the button is clicked
 document.getElementById("status").addEventListener("click", e => getStatus(e));
+//add event listener for submit button on form
+document.getElementById("submit").addEventListener("click", e => postForm(e));
 
+
+async function postForm(e) {
+
+    const form = new FormData(document.getElementById("checksform"));
+
+    const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+            "Authorization": API_KEY,
+        },
+        body: form,
+    });
+
+}
 //function needs to make a GET request to the API URL with the API Key & then pass the data to a function to display it
 
 async function getStatus(e) {
